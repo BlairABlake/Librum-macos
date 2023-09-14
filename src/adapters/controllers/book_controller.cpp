@@ -236,7 +236,7 @@ int BookController::removeTag(const QString& bookUuid, const QString& tagUuid)
 dtos::BookDto BookController::getBook(const QString& uuid)
 {
     const auto& books = m_bookService->getBooks();
-    auto book = std::ranges::find_if(books,
+    auto book = std::find_if(books.begin(), books.end(),
                                      [&uuid](const Book& b)
                                      {
                                          return b.getUuid() == QUuid(uuid);
@@ -330,7 +330,7 @@ void BookController::addBookTagsToDto(const Book& book, BookDto& bookDto)
 
 bool BookController::vectorContainsTag(const std::vector<Tag>& tags, QUuid uuid)
 {
-    return std::ranges::any_of(tags,
+    return std::any_of(tags.begin(), tags.end(),
                                [&uuid](const Tag& tag)
                                {
                                    return tag.getUuid() == uuid;

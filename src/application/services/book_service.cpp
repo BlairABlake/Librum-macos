@@ -104,7 +104,7 @@ BookOperationStatus BookService::addBook(const QString& filePath)
 
 auto BookService::getBookPosition(const QUuid& uuid)
 {
-    auto bookPosition = std::ranges::find_if(m_books,
+    auto bookPosition = std::find_if(m_books.begin(), m_books.end(),
                                              [&uuid](const Book& book)
                                              {
                                                  return book.getUuid() == uuid;
@@ -456,7 +456,7 @@ int BookService::getBookIndex(const QUuid& uuid) const
     if(book == nullptr)
         return -1;
 
-    auto bookPosition = std::ranges::find_if(m_books,
+    auto bookPosition = std::find_if(m_books.begin(), m_books.end(),
                                              [&uuid](const Book& rhs)
                                              {
                                                  return rhs.getUuid() == uuid;
@@ -633,8 +633,8 @@ void BookService::mergeLocalLibraryIntoRemoteLibrary(
     int bytesOfDataUploaded = 0;
     for(const auto& localBook : m_books)
     {
-        bool localBookExistsOnServer = std::ranges::any_of(
-            remoteBooks,
+        bool localBookExistsOnServer = std::any_of(
+            remoteBooks.begin(), remoteBooks.end(),
             [&localBook](const Book& remoteBook)
             {
                 return remoteBook.getUuid() == localBook.getUuid();

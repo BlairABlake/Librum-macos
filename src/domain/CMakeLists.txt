@@ -51,8 +51,8 @@ endif()
 
 
 # Install rules
-if(UNIX)
+#if(UNIX)
     install(TARGETS domain
             DESTINATION lib
             )
-endif()
+#endif()

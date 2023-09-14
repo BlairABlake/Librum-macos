@@ -180,6 +180,6 @@ if(UNIX)
     
     # Install mupdf's shared libraries
     install(FILES ${MUPDF_OUTPUT_DIR}/libmupdfcpp.so 
-                  ${MUPDF_OUTPUT_DIR}/libmupdf.so
+                  ${MUPDF_OUTPUT_DIR}/libmupdf.dylib
             DESTINATION lib)
 endif()

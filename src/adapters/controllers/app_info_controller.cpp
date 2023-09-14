@@ -69,8 +69,6 @@ QString AppInfoController::getOperatingSystem() const
 {
 #ifdef Q_OS_WIN
     return "WIN";
-#elif Q_OS_MACOS
-    return "MACOS";
 #else
     return "UNIX";
 #endif

@@ -156,7 +156,7 @@ void LibraryProxyModel::addFilterTag(QString tag)
 
 void LibraryProxyModel::removeFilterTag(QString tagToRemove)
 {
-    auto pos = std::ranges::find(m_tags, tagToRemove);
+    auto pos = std::find(m_tags.begin(), m_tags.end(), tagToRemove);
     if(pos == m_tags.end())
         return;
 
@@ -248,7 +248,7 @@ bool LibraryProxyModel::bookContainsAllTags(std::vector<TagDto> tags) const
 {
     for(const auto& tagName : m_tags)
     {
-        auto pos = std::ranges::find_if(tags,
+        auto pos = std::find_if(tags.begin(), tags.end(),
                                         [&tagName](const TagDto& tag)
                                         {
                                             return tag.name == tagName;

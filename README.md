@@ -122,6 +122,26 @@ Want a new feature? Feel free to leave a feature request ticket!
 Follow this guide to build Librum from source.
 <br>
 
+## Qt Installation for macos
+1. Clone the repository
+    ```sh
+    git clone https://github.com/qt/qt5.git
+    ```
+2. Change the tag to v6.5.0
+    ```sh
+    git checkout v6.5.0
+    ```
+3. Build!
+    ```sh
+    ./configure -developer-build
+    ```
+    ```sh
+    cmake --build .
+    ```
+4. Install!
+    ```sh
+    make install
+    ```
 
 ## For GNU/Linux
 
@@ -158,6 +178,48 @@ The installation is straight forward, just follow the steps below:
     ```sh
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=Off -DCMAKE_PREFIX_PATH=/home/john/Qt/6.5.1/gcc_64 ..
     ```
+6. Build the project
+    ```sh
+    cmake --build . -j $(nproc)
+    ```
+7. Install Librum
+    ```sh
+    cmake --install .
+    ```
+<br>
+
+## For macOS
+
+### Prerequisites
+- cmake                             (https://cmake.org/download)
+- make                              (http://ftp.gnu.org/gnu/make)
+- g++                               (https://gcc.gnu.org)
+- python3-venv                      (on ubuntu use `sudo apt install python3-venv`)
+- Qt 6.5                            (https://www.qt.io/download-open-source)
+
+### Installation
+The installation is straight forward, just follow the steps below:
+
+<br>
+
+1. Clone the repository.
+    ```sh
+    git clone https://github.com/BlairABlake/Librum-macos.git --recursive
+    ```
+2. Step into the cloned project folder.
+    ```sh
+    cd Librum
+    ```
+3. Create the build folder and step into it.
+    ```sh
+    mkdir build-Release
+    cd build-Release
+    ```
+4. Run cmake.
+    ```sh
+    cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=Off
+    ```
+
 6. Build the project
     ```sh
     cmake --build . -j $(nproc)
@@ -229,6 +291,3 @@ Here are some things to keep in mind during the build process.
 - For the Qt installation, you **only** need to choose "MSVC 2019 64-bit", you can untick everything else to reduce the download size
 
 <br>
-
-## For macOS
-Support coming soon!

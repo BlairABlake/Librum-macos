@@ -1,5 +1,6 @@
 #include "user.hpp"
 #include <ranges>
+#include <algorithm>
 
 namespace domain::entities
 {
@@ -105,7 +106,7 @@ const std::vector<Tag>& User::getTags() const
 
 const Tag* User::getTagByUuid(const QUuid& uuid) const
 {
-    auto tagPosition = std::ranges::find_if(m_tags,
+    auto tagPosition = std::find_if(m_tags.begin(), m_tags.end(),
                                             [&uuid](const Tag& tag)
                                             {
                                                 return tag.getUuid() == uuid;
@@ -118,7 +119,7 @@ const Tag* User::getTagByUuid(const QUuid& uuid) const
 
 const Tag* User::getTagByName(const QString& tagName) const
 {
-    auto tagPosition = std::ranges::find_if(m_tags,
+    auto tagPosition = std::find_if(m_tags.begin(), m_tags.end(),
                                             [&tagName](const Tag& tag)
                                             {
                                                 return tag.getName() == tagName;
@@ -146,7 +147,7 @@ bool User::addTag(const Tag& tag)
 
 bool User::deleteTag(const QUuid& uuid)
 {
-    auto tagPosition = std::ranges::find_if(m_tags,
+    auto tagPosition = std::find_if(m_tags.begin(), m_tags.end(),
                                             [uuid](const Tag& tag)
                                             {
                                                 return tag.getUuid() == uuid;
@@ -195,7 +196,7 @@ int User::getTagIndex(const QUuid& uuid) const
     if(tag == nullptr)
         return -1;
 
-    auto tagPosition = std::ranges::find_if(m_tags,
+    auto tagPosition = std::find_if(m_tags.begin(), m_tags.end(),
                                             [&uuid](const Tag& t)
                                             {
                                                 return t.getUuid() == uuid;

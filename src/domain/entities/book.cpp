@@ -284,7 +284,7 @@ bool Book::addTag(const Tag& tag)
 
 bool Book::removeTag(const QUuid& uuid)
 {
-    auto tagPosition = std::ranges::find_if(m_tags,
+    auto tagPosition = std::find_if(m_tags.begin(), m_tags.end(),
                                             [uuid](const Tag& tag)
                                             {
                                                 return tag.getUuid() == uuid;
@@ -325,7 +325,7 @@ bool Book::tagsAreTheSame(const std::vector<Tag>& other) const
 
 Tag* Book::getTagByUuid(const QUuid& uuid)
 {
-    auto tagPosition = std::ranges::find_if(m_tags,
+    auto tagPosition = std::find_if(m_tags.begin(), m_tags.end(),
                                             [uuid](const Tag& tag)
                                             {
                                                 return tag.getUuid() == uuid;
@@ -338,7 +338,7 @@ Tag* Book::getTagByUuid(const QUuid& uuid)
 
 Tag* Book::getTagByName(const QString& name)
 {
-    auto tagPosition = std::ranges::find_if(m_tags,
+    auto tagPosition = std::find_if(m_tags.begin(), m_tags.end(),
                                             [name](const Tag& tag)
                                             {
                                                 return tag.getName() == name;
